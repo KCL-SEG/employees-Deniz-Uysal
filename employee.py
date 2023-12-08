@@ -54,16 +54,24 @@ class Employee:
         explanation = f"{self.name} works on a"
 
         if self.contract_type == 'salary':
-            explanation += f" monthly salary of {self.monthly_salary}."
+            explanation += f" monthly salary of {self.monthly_salary}"
+            if self.commission_per_contract and self.num_contracts:
+                explanation += f" and receives a commission for {self.num_contracts} contract(s) at {self.commission_per_contract}/contract"
+            if self.bonus:
+                explanation += f" and receives a bonus commission of {self.bonus}"
+
+
 
         elif self.contract_type == 'hourly':
-            explanation += f" contract of {self.hours_worked} hours at {self.hourly_wage}/hour."
+            explanation += f" contract of {self.hours_worked} hours at {self.hourly_wage}/hour"
+            if self.commission_per_contract and self.num_contracts:
+                explanation += f" and receives a commission for {self.num_contracts} contract(s) at {self.commission_per_contract}/contract"
+            if self.bonus:
+                explanation += f" and receives a bonus commission of {self.bonus}"
 
-        if self.bonus:
-            explanation += f" and receives a bonus commission of {self.bonus}."
+        explanation += "."
 
-        if self.commission_per_contract and self.num_contracts:
-            explanation += f" and receives a commission for {self.num_contracts} contract(s) at {self.commission_per_contract}/contract."
+
 
         explanation += f" Their total pay is {self.get_pay()}."
 
